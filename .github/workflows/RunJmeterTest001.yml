@@ -26,6 +26,9 @@ jobs:
        # Step 1: Pull your JMeter script (.jmx) from the repository
       - name: Checkout Code
         uses: actions/checkout@v4
+      
+      - name: Create reports directory
+        run: mkdir -p ./reports/html
 
       # Step 2: Run the JMeter performance test
       - name: Execute JMeter Test
