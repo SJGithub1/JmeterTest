@@ -32,7 +32,7 @@ jobs:
         uses: QAInsights/PerfAction@v5.6.2
         with:
           test-plan-path: './testPlan.jmx'
-          args: '-X' # Optional: Adds extra debugging flags if needed
+          args: "-e -o ./reports/html/" # Optional: Adds extra debugging flags if needed
 
       # Step 3: Archive the results so you can download them later
       - name: Upload Test Results
@@ -43,3 +43,11 @@ jobs:
           path: |
             result.jtl
             *.log
+
+      # step 4: Upload HTML Report
+      - name: Upload HTML Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: jmeter-html-reports
+          path: reports
+          if-no-files-found: error
